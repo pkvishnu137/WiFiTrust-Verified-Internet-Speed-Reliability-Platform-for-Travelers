@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalSure - Verified WiFi Finder</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">
+      <span class="brand-mark">SS</span>
+      <span>SignalSure</span>
+    </a>
+    <nav>
+      <a href="#venues">Venues</a>
+      <a href="#verify">Test WiFi</a>
+      <a href="#method">Method</a>
+    </nav>
+    <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle theme">◐</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Verified internet for travelers</p>
+        <h1>Stop trusting "high-speed WiFi" claims blindly.</h1>
+        <p class="lede">Search cafes, hotels, coworking spaces, and rentals by measured speed, latency, call stability, and recent traveler reports.</p>
+        <div class="hero-actions">
+          <a class="primary-action" href="#venues">Explore Venues</a>
+          <a class="secondary-action" href="#verify">Run a WiFi Check</a>
+        </div>
+      </div>
+
+      <section class="live-card" aria-label="Live WiFi quality demo">
+        <div class="score-ring">
+          <span>Live Trust Score</span>
+          <strong id="heroScore">91</strong>
+        </div>
+        <button id="simulateTest" type="button">Simulate Speed Test</button>
+        <div class="live-stats">
+          <p><span id="liveDownload">84</span> Mbps download</p>
+          <p><span id="liveLatency">26</span> ms latency</p>
+          <p><span id="liveDrops">0</span> call drops</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="search-band" aria-label="Search verified WiFi">
+      <label>
+        Destination or venue
+        <input id="searchInput" type="search" placeholder="Try Lisbon, hotel, cafe, coworking">
+      </label>
+      <label>
+        Internet need
+        <select id="needSelect">
+          <option value="all">Any need</option>
+          <option value="remote">Remote work</option>
+          <option value="calls">Video calls</option>
+          <option value="upload">Large uploads</option>
+          <option value="travel">General travel</option>
+        </select>
+      </label>
+      <label>
+        Minimum score
+        <input id="scoreRange" type="range" min="50" max="95" value="70">
+      </label>
+      <div class="range-value"><span id="scoreValue">70</span>+</div>
+    </section>
+
+    <section class="summary-grid" aria-label="Platform summary">
+      <article>
+        <strong id="verifiedCount">0</strong>
+        <span>matching verified venues</span>
+      </article>
+      <article>
+        <strong id="averageScore">0</strong>
+        <span>average trust score</span>
+      </article>
+      <article>
+        <strong id="favoriteCount">0</strong>
+        <span>saved places</span>
+      </article>
+    </section>
+
+    <section id="venues" class="workspace">
+      <aside class="side-panel">
+        <h2>Quality Signals</h2>
+        <p>SignalSure ranks places by reliable work conditions, not just peak speed.</p>
+        <div class="legend">
+          <span><i class="good"></i> 85-100 dependable</span>
+          <span><i class="okay"></i> 70-84 usable</span>
+          <span><i class="bad"></i> below 70 risky</span>
+        </div>
+        <div class="map-card">
+          <span class="pin pin-a"></span>
+          <span class="pin pin-b"></span>
+          <span class="pin pin-c"></span>
+          <span class="route"></span>
+        </div>
+      </aside>
+
+      <div>
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Verified places</p>
+            <h2>Best matches for your trip</h2>
+          </div>
+          <button id="sortButton" type="button">Sort: Score high to low</button>
+        </div>
+        <div class="venue-list" id="venueList" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="verify" class="verify-section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Add evidence</p>
+          <h2>Submit a WiFi Check</h2>
+        </div>
+      </div>
+      <div class="verify-layout">
+        <form id="testForm">
+          <label>
+            Venue name
+            <input id="venueName" required placeholder="Example: Harbor Desk Cafe">
+          </label>
+          <label>
+            Download Mbps
+            <input id="download" required type="number" min="1" max="1000" value="72">
+          </label>
+          <label>
+            Upload Mbps
+            <input id="upload" required type="number" min="1" max="1000" value="38">
+          </label>
+          <label>
+            Latency ms
+            <input id="latency" required type="number" min="1" max="500" value="28">
+          </label>
+          <label>
+            Dropped calls this hour
+            <input id="drops" required type="number" min="0" max="20" value="0">
+          </label>
+          <button type="submit">Calculate Trust Score</button>
+        </form>
+        <div class="result-card" id="formResult">
+          <strong>Run the check</strong>
+          <p>Your result will appear here with a task recommendation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="method" class="method-grid">
+      <article>
+        <h2>How the Score Works</h2>
+        <p>The score combines download speed, upload readiness, latency, recent tests, and call stability.</p>
+      </article>
+      <article>
+        <h2>Why It Helps</h2>
+        <p>Travelers can compare real connection quality before booking or choosing a work spot.</p>
+      </article>
+      <article>
+        <h2>MVP Path</h2>
+        <p>Start with user-submitted tests, then add browser speed checks, venue QR codes, and booking platform APIs.</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
